@@ -5,13 +5,13 @@ import 'swiper/css/navigation';
 
 import { BP_LG, BP_TITLE_COMPACT } from './breakpoints.js';
 
-export function initSlider() {
+function createSlider() {
   const swiperElement = document.getElementById('swiper-container');
   const progressTrack = document.getElementById('progress-bar-track');
   const progressStart = document.querySelector('.progress-start');
   const progressEnd = document.querySelector('.progress-end');
 
-  if (!swiperElement) return;
+  if (!swiperElement) return null;
 
   if (swiperElement.swiper) {
     swiperElement.swiper.destroy(true, true);
@@ -52,7 +52,7 @@ export function initSlider() {
     });
   };
 
-  const swiper = new Swiper('#swiper-container', {
+  return new Swiper('#swiper-container', {
     modules: [Navigation],
     cssMode: true,
     slidesPerView: 1,
@@ -90,6 +90,32 @@ export function initSlider() {
       },
     },
   });
+}
 
-  return swiper;
+// Fix attempt #1: lazy init — start Swiper only when the section is near the viewport.
+export function initSlider() {
+  const countrySection = document.querySelector('.country-section');
+
+  if (!document.getElementById('swiper-container')) return;
+
+  const mountSlider = () => createSlider();
+
+  if (!countrySection) {
+    return mountSlider();
+  }
+
+  if (countrySection.getBoundingClientRect().top < window.innerHeight + 100) {
+    return mountSlider();
+  }
+
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      if (!entry.isIntersecting) return;
+      observer.disconnect();
+      mountSlider();
+    },
+    { rootMargin: '100px 0px', threshold: 0 },
+  );
+
+  observer.observe(countrySection);
 }
