@@ -7,7 +7,6 @@ import { BP_LG, BP_TITLE_COMPACT } from './breakpoints.js';
 
 export function initSlider() {
   const swiperElement = document.getElementById('swiper-container');
-  const countrySection = document.querySelector('.country-section');
   const progressTrack = document.getElementById('progress-bar-track');
   const progressStart = document.querySelector('.progress-start');
   const progressEnd = document.querySelector('.progress-end');
@@ -91,41 +90,6 @@ export function initSlider() {
       },
     },
   });
-
-  let isInView = false;
-  let refreshScheduled = false;
-
-  const fixSlidePosition = () => {
-    if (refreshScheduled) return;
-    refreshScheduled = true;
-
-    requestAnimationFrame(() => {
-      refreshScheduled = false;
-      swiper.update();
-      swiper.slideTo(swiper.activeIndex, 0);
-      updateProgress(swiper);
-    });
-  };
-
-  const observeTarget = countrySection || swiperElement;
-
-  const visibilityObserver = new IntersectionObserver(
-    ([entry]) => {
-      const nextInView = entry.isIntersecting;
-
-      if (nextInView && !isInView) {
-        fixSlidePosition();
-      }
-
-      isInView = nextInView;
-    },
-    {
-      rootMargin: '150px 0px',
-      threshold: 0,
-    },
-  );
-
-  visibilityObserver.observe(observeTarget);
 
   return swiper;
 }

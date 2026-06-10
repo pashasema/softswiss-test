@@ -202,17 +202,3 @@
   line-height: 1.45;
   color: var(--text-muted);
 }
-
-// Safari: compositor layers + scroll-snap jank in cssMode.
-#swiper-container.swiper-css-mode {
-  > .swiper-wrapper {
-    transform: none !important;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  > .swiper-wrapper > .swiper-slide {
-    transform: none !important;
-    transition: none !important;
-  }
-
-}
