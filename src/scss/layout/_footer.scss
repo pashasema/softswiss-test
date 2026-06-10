@@ -1,0 +1,97 @@
+@use '../base/variables' as *;
+@use '../base/mixins' as *;
+
+.footer {
+  padding: 0 20px 20px;
+  background: var(--bg-surface);
+
+  [data-theme='dark'] & {
+    .btn-up-scroll,
+    .btn-email {
+      border-color: rgba(255, 255, 255, 0.2);
+
+      &:hover {
+        border-color: var(--color-brand);
+      }
+    }
+  }
+}
+
+.footer-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: var(--container-width);
+  margin: 0 auto;
+
+  @media (max-width: $bp-mobile) {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
+}
+
+.footer-left {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+
+  @media (max-width: $bp-mobile) {
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+}
+
+.btn-up-scroll {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  color: var(--text-main);
+  background: transparent;
+  border: 1.6px solid var(--border-color);
+  border-radius: var(--border-radius-sm);
+  cursor: pointer;
+  transition:
+    transform var(--transition-speed) var(--transition-spring),
+    color var(--transition-speed) var(--transition-easing),
+    border-color var(--transition-speed) var(--transition-easing),
+    box-shadow var(--transition-speed) var(--transition-easing);
+
+  @include outline-button-states(1.05, 0.95);
+}
+
+.btn-email {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  padding: 0 24px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-main);
+  border: 1.6px solid var(--border-color);
+  border-radius: var(--border-radius-sm);
+  transition:
+    transform var(--transition-speed) var(--transition-spring),
+    color var(--transition-speed) var(--transition-easing),
+    border-color var(--transition-speed) var(--transition-easing),
+    box-shadow var(--transition-speed) var(--transition-easing);
+
+  @include outline-button-states;
+}
+
+.copyright {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.45;
+  color: var(--text-main);
+
+  @media (max-width: $bp-mobile) {
+    width: 100%;
+  }
+}

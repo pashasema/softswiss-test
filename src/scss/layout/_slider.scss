@@ -1,0 +1,218 @@
+@use '../base/variables' as *;
+
+.country-section {
+  padding: 104px 20px;
+  background: var(--bg-surface);
+
+  @media (max-width: $bp-tablet) {
+    padding: 103px 20px;
+  }
+
+  @media (max-width: $bp-header-compact) {
+    padding: 74px 20px;
+  }
+}
+
+.section-heading {
+  max-width: var(--container-max);
+  margin: 0 auto 40px;
+  padding: 0 var(--container-gutter);
+  text-align: center;
+
+  @media (max-width: $bp-header-compact) {
+    margin-bottom: 26px;
+  }
+}
+
+.section-title {
+  margin-bottom: 24px;
+  font-size: clamp(2rem, 4vw, 64px);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--text-main);
+
+  @media (max-width: $bp-tablet) {
+    font-size: 64px;
+  }
+
+  @media (max-width: $bp-title-compact) {
+    font-size: 32px;
+  }
+}
+
+.section-subtitle {
+  max-width: 540px;
+  margin: 0 auto;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+.slider-card {
+  width: auto;
+  max-width: var(--container-width);
+  margin-inline: 20px;
+  padding: 20px;
+  background: var(--slider-card-bg);
+  border-radius: var(--border-radius);
+  margin-left: auto;
+  margin-right: auto;
+
+  @media (min-width: calc(var(--container-max) + 1px)) {
+    margin-inline: auto;
+  }
+
+  @media (max-width: $bp-header-compact) {
+    padding: 8px;
+    box-shadow: 0 0 10px 0 rgba(29, 29, 27, 0.10);
+    padding-top: 20px;
+  }
+}
+
+.slider-controls-row {
+  display: flex;
+  gap: 21px;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 0 20px;
+
+  @media (max-width: $bp-tablet) {
+    padding: 0;
+  }
+
+  @media (max-width: $bp-header-compact) {
+    padding: 0 12px;
+  }
+}
+
+.slider-progress-wrapper {
+  display: flex;
+  flex: 1;
+  gap: 20px;
+  align-items: center;
+  min-width: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-brand);
+}
+
+.progress-bar-track {
+  display: flex;
+  flex: 1;
+  height: 4px;
+  overflow: hidden;
+  border-radius: 2px;
+}
+
+.progress-segment {
+  flex: 1;
+  height: 100%;
+  background: var(--border-color);
+  transition: background-color var(--transition-speed) var(--transition-easing);
+
+  &.active {
+    background: var(--color-brand);
+  }
+}
+
+.swiper-nav-btn {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  padding: 0;
+  color: #ffffff;
+  background: var(--border-color);
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  transition:
+    transform var(--transition-speed) var(--transition-spring),
+    background-color var(--transition-speed) var(--transition-easing),
+    color var(--transition-speed) var(--transition-easing),
+    box-shadow var(--transition-speed) var(--transition-easing);
+
+  &:hover {
+    color: #ffffff;
+    background: var(--color-brand);
+    border-color: var(--color-brand);
+    transform: scale(1.06);
+    box-shadow: var(--shadow-btn-hover);
+  }
+
+  &:active {
+    transform: scale(0.95);
+    transition-duration: 0.1s;
+  }
+
+  [data-theme='dark'] & {
+    color: #000000;
+    background: rgba(255, 255, 255, 0.2);
+
+    &:hover {
+      color: #ffffff;
+      background: var(--color-brand);
+    }
+  }
+}
+
+.country-card {
+  display: flex;
+  flex-direction: column;
+  height: 249px;
+  padding: 24px;
+  background: var(--bg-surface);
+  border-radius: var(--border-radius);
+
+  @media (max-width: $bp-header-compact) {
+    align-items: center;
+    height: 225px;
+  }
+}
+
+.flag-icon-wrapper {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 48px;
+
+  svg,
+  img {
+    width: 80px;
+    height: 80px;
+    border-radius: 17px;
+  }
+
+  @media (max-width: $bp-header-compact) {
+    margin-bottom: 26px;
+  }
+}
+
+.country-title {
+  margin-bottom: 8px;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--text-main);
+}
+
+.country-desc {
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--text-muted);
+}
+
+// Safari: compositor layers + scroll-snap jank in cssMode.
+#swiper-container.swiper-css-mode {
+  > .swiper-wrapper {
+    transform: none !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  > .swiper-wrapper > .swiper-slide {
+    transform: none !important;
+    transition: none !important;
+  }
+
+}

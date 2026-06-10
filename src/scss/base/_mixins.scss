@@ -1,0 +1,26 @@
+@mixin brand-button-states($hover-transform: translateY(-2px) scale(1.03), $active-transform: translateY(0) scale(0.98)) {
+  &:hover {
+    background-color: var(--color-brand-hover);
+    transform: $hover-transform;
+    box-shadow: var(--shadow-btn-hover);
+  }
+
+  &:active {
+    transform: $active-transform;
+    transition-duration: 0.1s;
+  }
+}
+
+@mixin outline-button-states($hover-scale: 1.02, $active-scale: 0.98) {
+  &:hover {
+    color: var(--color-brand);
+    border-color: var(--color-brand);
+    transform: translateY(-2px) scale($hover-scale);
+    box-shadow: 0 4px 16px rgba(227, 6, 19, 0.2);
+  }
+
+  &:active {
+    transform: scale($active-scale);
+    transition-duration: 0.1s;
+  }
+}
